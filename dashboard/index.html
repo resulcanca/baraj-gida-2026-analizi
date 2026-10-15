@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 Baraj Krizi vs Gıda Enflasyonu | Portföy Projesi</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>body{font-family:'Inter',sans-serif;background:#f8fafc}</style>
+</head>
+<body class="text-slate-800">
+<header class="bg-slate-900 text-white">
+  <div class="max-w-6xl mx-auto px-6 py-8">
+    <span class="bg-emerald-400 text-slate-900 text-xs font-black px-3 py-1 rounded-full">2026 GÜNCEL • GERÇEK VERİ</span>
+    <h1 class="text-3xl md:text-4xl font-black mt-3">2026 Baraj Krizi vs Gıda Enflasyonu</h1>
+    <p class="text-slate-300 mt-2 text-sm max-w-3xl">İstanbul baraj doluluğu ile gıda enflasyonu arasında gecikmeli etki var mı? İSKİ + TCMB EVDS + MGM verileriyle korelasyon analizi.</p>
+    <p class="text-xs text-slate-500 mt-2">Kaynak: İSKİ • MGM • TÜİK • TCMB EVDS &nbsp;|&nbsp; Analiz: Python Pandas + scikit-learn</p>
+  </div>
+</header>
+<div class="max-w-6xl mx-auto px-6 py-6">
+  <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+    <div class="bg-white rounded-2xl p-5 border shadow-sm"><div class="text-xs font-bold text-slate-500">İSKİ BARAJ ORT.</div><div class="text-3xl font-black">28.4<span class="text-lg">%</span> <span class="text-xs bg-red-500 text-white px-2 py-0.5 rounded-full">KRİTİK</span></div><div class="text-xs text-slate-500">Eylül 2026 • 10y ort: 58%</div></div>
+    <div class="bg-white rounded-2xl p-5 border shadow-sm"><div class="text-xs font-bold text-slate-500">GIDA ENFLASYONU</div><div class="text-3xl font-black">%62.7</div><div class="text-xs text-slate-500">Yıllık • Manşet %29.73</div></div>
+    <div class="bg-white rounded-2xl p-5 border shadow-sm"><div class="text-xs font-bold text-slate-500">YAĞIŞ AÇIĞI</div><div class="text-3xl font-black">-38%</div><div class="text-xs text-slate-500">Marmara • 9 ay</div></div>
+    <div class="bg-slate-900 text-white rounded-2xl p-5 border"><div class="text-xs font-bold text-cyan-400">MODEL (LAG-1)</div><div class="font-black leading-tight">r = -0.785<br><span class="text-cyan-400">R² = 0.616</span></div><div class="text-xs text-slate-400">Baraj 1 ay sonra fiyatı vuruyor</div></div>
+  </div>
+  <div class="grid lg:grid-cols-3 gap-6 mt-6">
+    <div class="lg:col-span-2 bg-white rounded-2xl p-6 border shadow-sm">
+      <h3 class="font-black">Baraj Doluluk vs Aylık Gıda TÜFE (2026)</h3>
+      <p class="text-xs text-slate-500">Mavi alan baraj, turuncu çizgi gıda enflasyonu - makas Mart'tan sonra açılıyor</p>
+      <canvas id="line" height="140" class="mt-4"></canvas>
+      <div class="bg-amber-50 border border-amber-200 rounded-xl p-3 mt-4 text-xs"><b>İçgörü:</b> Mart'ta baraj %41 → %34 düşünce Nisan-Mayıs gıda TÜFE %7.2 ve %8.9'a fırladı.</div>
+    </div>
+    <div class="bg-white rounded-2xl p-6 border shadow-sm">
+      <h3 class="font-black">Korelasyon</h3>
+      <canvas id="scatter" height="220" class="mt-3"></canvas>
+      <div class="grid grid-cols-2 gap-3 mt-3 text-center"><div class="bg-slate-50 border rounded-xl p-3"><div class="text-xs text-slate-500">lag0 r</div><div class="font-black">-0.906</div></div><div class="bg-slate-50 border rounded-xl p-3"><div class="text-xs text-slate-500">lag1 r</div><div class="font-black">-0.785</div></div></div>
+    </div>
+  </div>
+  <div class="grid lg:grid-cols-2 gap-6 mt-6">
+    <div class="bg-white rounded-2xl p-6 border shadow-sm">
+      <h3 class="font-black">En Çok Zamlanan 6 Ürün (Yıllık %)</h3>
+      <canvas id="bar" height="240" class="mt-3"></canvas>
+    </div>
+    <div class="bg-white rounded-2xl p-6 border shadow-sm">
+      <h3 class="font-black">Veri Tablosu (9 Ay)</h3>
+      <div class="overflow-auto mt-3 border rounded-xl">
+        <table class="w-full text-xs">
+          <thead class="bg-slate-900 text-white"><tr><th class="p-2 text-left">Ay</th><th class="p-2">Baraj %</th><th class="p-2">Yağış mm</th><th class="p-2">Gıda Aylık %</th><th class="p-2">Gıda Yıllık %</th></tr></thead>
+          <tbody class="divide-y">
+            <tr><td class="p-2 font-bold">2026-01</td><td class="p-2 text-center">48.2</td><td class="p-2 text-center">62.1</td><td class="p-2 text-center">3.1</td><td class="p-2 text-center">58.4</td></tr>
+            <tr><td class="p-2 font-bold">2026-02</td><td class="p-2 text-center">44.5</td><td class="p-2 text-center">41.3</td><td class="p-2 text-center">3.8</td><td class="p-2 text-center">59.2</td></tr>
+            <tr><td class="p-2 font-bold">2026-03</td><td class="p-2 text-center">41.0</td><td class="p-2 text-center">28.7</td><td class="p-2 text-center">4.5</td><td class="p-2 text-center">61.1</td></tr>
+            <tr><td class="p-2 font-bold">2026-04</td><td class="p-2 text-center">34.2</td><td class="p-2 text-center">18.4</td><td class="p-2 text-center">7.2</td><td class="p-2 text-center">64.3</td></tr>
+            <tr><td class="p-2 font-bold">2026-05</td><td class="p-2 text-center">31.5</td><td class="p-2 text-center">12.9</td><td class="p-2 text-center">8.9</td><td class="p-2 text-center">66.8</td></tr>
+            <tr><td class="p-2 font-bold">2026-06</td><td class="p-2 text-center">30.1</td><td class="p-2 text-center">9.2</td><td class="p-2 text-center">9.4</td><td class="p-2 text-center">68.1</td></tr>
+            <tr><td class="p-2 font-bold">2026-07</td><td class="p-2 text-center">29.3</td><td class="p-2 text-center">4.1</td><td class="p-2 text-center">8.1</td><td class="p-2 text-center">65.4</td></tr>
+            <tr><td class="p-2 font-bold">2026-08</td><td class="p-2 text-center">28.9</td><td class="p-2 text-center">6.3</td><td class="p-2 text-center">7.4</td><td class="p-2 text-center">63.9</td></tr>
+            <tr class="bg-red-50 font-bold"><td class="p-2">2026-09</td><td class="p-2 text-center">28.4</td><td class="p-2 text-center">11.7</td><td class="p-2 text-center">6.9</td><td class="p-2 text-center">62.7</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="bg-slate-900 text-slate-200 rounded-xl p-3 mt-4 text-xs mono">python src/main.py → data/processed/dataset_final.csv<br>python src/analysis.py → R² = 0.616</div>
+    </div>
+  </div>
+  <div class="text-center text-xs text-slate-400 mt-8">Kaynaklar: İSKİ Baraj Doluluk • MGM Yağış • TÜİK/TCMB EVDS Gıda TÜFE • Ekim 2026</div>
+</div>
+<script>
+new Chart(document.getElementById('line'),{type:'line',data:{labels:['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül'],datasets:[{label:'Baraj %',data:[48.2,44.5,41.0,34.2,31.5,30.1,29.3,28.9,28.4],borderColor:'#06b6d4',backgroundColor:'rgba(6,182,214,0.12)',fill:true,tension:0.4,borderWidth:3},{label:'Gıda Aylık %',data:[3.1,3.8,4.5,7.2,8.9,9.4,8.1,7.4,6.9],borderColor:'#f59e0b',tension:0.4,borderWidth:3}]},options:{plugins:{legend:{position:'bottom'}},scales:{y:{min:0,max:55}}}});
+new Chart(document.getElementById('scatter'),{type:'scatter',data:{datasets:[{data:[{x:48.2,y:3.1},{x:44.5,y:3.8},{x:41,y:4.5},{x:34.2,y:7.2},{x:31.5,y:8.9},{x:30.1,y:9.4},{x:29.3,y:8.1},{x:28.9,y:7.4},{x:28.4,y:6.9}],backgroundColor:'#0f172a',pointRadius:7}]},options:{plugins:{legend:{display:false}}}});
+new Chart(document.getElementById('bar'),{type:'bar',data:{labels:['Domates','Salatalık','Marul','Zeytinyağı','Buğday Unu','Tavuk'],datasets:[{data:[98,87,76,61,54,42],backgroundColor:['#ef4444','#f59e0b','#22c55e','#06b6d4','#8b5cf6','#ec4899'],borderRadius:8}]},options:{indexAxis:'y',plugins:{legend:{display:false}}}});
+</script>
+</body>
+</html>
